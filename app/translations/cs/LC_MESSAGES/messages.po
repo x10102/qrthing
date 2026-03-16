@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-16 18:57+0100\n"
+"POT-Creation-Date: 2026-03-16 20:13+0100\n"
 "PO-Revision-Date: 2026-03-16 02:05+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: cs\n"
@@ -18,9 +18,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/app.py:82
+#: app/app.py:86
 msgid "Log in to access this page"
 msgstr "Pro zobrazení této stránky se přihlaste"
+
+#: app/blueprints/auth.py:16
+msgid "Incorrect username or password"
+msgstr "Nesprávné uživatelské jméno nebo heslo"
+
+#: app/blueprints/auth.py:19
+msgid "You are now logged in"
+msgstr "Přihlášení úspěšné"
+
+#: app/blueprints/auth.py:26
+msgid "Logged out"
+msgstr "Odhlášeno"
 
 #: app/misc/forms.py:20
 msgid "Username"
@@ -33,6 +45,14 @@ msgstr "Heslo"
 #: app/misc/forms.py:22
 msgid "Log in"
 msgstr "Přihlásit se"
+
+#: app/templates/index.j2:13
+msgid "Welcome to LinkThing!"
+msgstr "Vítejte v LinkThing!"
+
+#: app/templates/index.j2:14
+msgid "Use the navigation bar to get started"
+msgstr "Pro pokračování do aplikace použijte navigační menu"
 
 #: app/templates/navbar.j2:7
 msgid "Create new code"
@@ -49,4 +69,12 @@ msgstr "Spravovat kódy"
 #: app/templates/navbar.j2:19
 msgid "Manage links"
 msgstr "Spravovat odkazy"
+
+#: app/templates/auth/login.j2:13 app/templates/navbar.j2:23
+msgid "Log In"
+msgstr "Přihlásit se"
+
+#: app/templates/navbar.j2:28
+msgid "Log Out"
+msgstr "Odhlásit se"
 

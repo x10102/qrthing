@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-16 19:37+0100\n"
+"POT-Creation-Date: 2026-03-16 20:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,18 @@ msgstr ""
 
 #: app/app.py:86
 msgid "Log in to access this page"
+msgstr ""
+
+#: app/blueprints/auth.py:16
+msgid "Incorrect username or password"
+msgstr ""
+
+#: app/blueprints/auth.py:19
+msgid "You are now logged in"
+msgstr ""
+
+#: app/blueprints/auth.py:26
+msgid "Logged out"
 msgstr ""
 
 #: app/misc/forms.py:20
@@ -33,11 +45,11 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: app/templates/index.j2:6
+#: app/templates/index.j2:13
 msgid "Welcome to LinkThing!"
 msgstr ""
 
-#: app/templates/index.j2:7
+#: app/templates/index.j2:14
 msgid "Use the navigation bar to get started"
 msgstr ""
 
@@ -57,7 +69,11 @@ msgstr ""
 msgid "Manage links"
 msgstr ""
 
-#: app/templates/auth/login.j2:6 app/templates/navbar.j2:24
+#: app/templates/auth/login.j2:13 app/templates/navbar.j2:23
 msgid "Log In"
+msgstr ""
+
+#: app/templates/navbar.j2:28
+msgid "Log Out"
 msgstr ""
 
