@@ -1,13 +1,28 @@
-<div class="absolute top-0 left-0 h-full bg-blue-400 flex flex-col border-r border-slate-500 items-center gap-3 text-white">
+<div class="h-full bg-blue-400 flex flex-col border-r border-slate-500 items-center gap-3 text-white">
     <div id="logo" class="text-xl shadow-md px-10 h-fit w-full py-3">
         <p class="mx-auto text-center">QRThing</p>
     </div>
-    <a class="menu-item mx-4 px-2 py-2 flex flex-row items-center border-slate-300 border rounded-md hover:shadow-md cursor-pointer transition-all">
+    <a class="menu-item mx-4 px-2 py-2 flex w-max flex-row items-center border-slate-300 border rounded-md hover:shadow-md cursor-pointer transition-all">
         <i class="bi bi-qr-code text-xl mr-2"></i>
         <b>{{_('Create new code')}}</b>
     </a>
-    <a class="menu-item mx-4 px-2 py-2 flex flex-row items-center border-slate-300 border rounded-md hover:shadow-md cursor-pointer transition-all">
+    <a class="menu-item mx-4 px-2 py-2 flex w-fit flex-row items-center border-slate-300 border rounded-md hover:shadow-md cursor-pointer transition-all">
+        <i class="bi bi-link-45deg text-xl mr-2"></i>
+        <b>{{_('Create new shortlink')}}</b>
+    </a>
+    <a class="menu-item mx-4 px-2 py-2 flex flex-row w-max items-center border-slate-300 border rounded-md hover:shadow-md cursor-pointer transition-all">
         <i class="bi bi-list text-xl mr-2"></i>
         <b>{{_('Manage codes')}}</b>
     </a>
+    <a class="menu-item mx-4 px-2 py-2 flex flex-row w-max items-center border-slate-300 border rounded-md hover:shadow-md cursor-pointer transition-all">
+        <i class="bi bi-list text-xl mr-2"></i>
+        <b>{{_('Manage links')}}</b>
+    </a>
+    {% if not current_user.is_authenticated %}
+    <a href="{{url_for('AuthController.login')}}" class="mt-auto w-full h-14 border-t border-slate-300 flex items-center justify-center gap-3 hover:bg-black/10 transition-all">
+      <div class="border-slate-700/50 border rounded-full w-10 h-10"></div>
+        <b>{{_('Log In')}}</b>
+        
+    </a>
+    {% endif %}
 </div>

@@ -2,17 +2,18 @@ import waitress
 import json
 import secrets
 import logging
-from logging import info, warning, error
+from logging import info
 import bcrypt
-from os import getcwd
+from os import getcwd, makedirs
 from os.path import exists, join
 
-from misc.typing_hacks import _l
+from misc.helpers.typing_hacks import _l
 
 from flask import Flask, request, session
 from db import database, User, UserRole, DynamicCode
 
 from blueprints.index import IndexController
+from blueprints.auth import AuthController
 from extensions import login_manager, babel
 
 app = Flask(__name__)
@@ -22,6 +23,7 @@ LOGGER_FORMAT_STR = '[%(asctime)s][%(module)s] %(levelname)s: %(message)s'
 
 def get_locale():
     if 'language' in session:
+        print(session['language'])
         return session['language']
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
@@ -47,25 +49,30 @@ def make_default_config() -> dict:
         "LANGUAGES": ['en', 'cs']
         }
 
-def init_db():
+def make_dirs() -> None:
+    makedirs(join(getcwd(), 'data'), exist_ok=True)
+
+def init_db() -> None:
     database.connect()
     database.create_tables([User, UserRole, DynamicCode])
-    role_user = UserRole.insert(id=1, name="user").on_conflict_ignore().execute()
-    role_admin = UserRole.insert(id=2, name="administrator").on_conflict_ignore().execute()
+    UserRole.insert(id=1, name="user").on_conflict_ignore().execute()
+    UserRole.insert(id=2, name="administrator").on_conflict_ignore().execute()
 
-def register_blueprints():
+def register_blueprints() -> None:
     app.register_blueprint(IndexController)
+    app.register_blueprint(AuthController)
 
 # Sounds cooler than just 'admin' imo
-def create_administrator(username: str = 'sysop', password: str = 'mikumiku'):
+def create_administrator(username: str = 'sysop', password: str = 'mikumiku') -> None:
     admin_role = UserRole.get_by_id(2)
     if len(list(admin_role.users)) == 0:
         hashed_pw = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
         new_admin = User.create(username=username, password=hashed_pw, role=admin_role)
         info(f"New admin created with ID {new_admin.id}")
 
-def init_app():
+def init_app() -> None:
     cfg_path = join(getcwd(), cfg_file)
+    print(cfg_path)
     if not exists(cfg_path):
         new_config = open(cfg_file, 'w')
         json.dump(make_default_config(), new_config, indent=4)
@@ -75,12 +82,14 @@ def init_app():
     create_administrator()
     # Set up login manager
     login_manager.session_protection = "basic"
+    login_manager.login_view = 'AuthController.login'
     login_manager.login_message = _l('Log in to access this page')
     login_manager.user_loader(lambda uid: User.get_or_none(uid))
     login_manager.init_app(app)
     babel.init_app(app, locale_selector=get_locale)
 
 if __name__ == '__main__':
+    make_dirs()
     init_logger()
     init_db()
     init_app()

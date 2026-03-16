@@ -1,5 +1,10 @@
 {% extends 'base.j2' %}
 
 {% block content %}
-hi
+<div class="flex-1 flex items-center justify-center">
+  <div class="flex flex-col items-center justify-center gap-2">
+    <h1 class="text-4xl">{{_('Welcome to LinkThing!')}}</h1>
+    <p>{{_('Use the navigation bar to get started')}}</p>
+  </div>
+</div>
 {% endblock content %}
