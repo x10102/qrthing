@@ -9,7 +9,7 @@ from os.path import exists, join
 
 from misc.typing_hacks import _l
 
-from flask import Flask, request
+from flask import Flask, request, session
 from db import database, User, UserRole, DynamicCode
 
 from blueprints.index import IndexController
@@ -21,6 +21,8 @@ cfg_file = 'config.json'
 LOGGER_FORMAT_STR = '[%(asctime)s][%(module)s] %(levelname)s: %(message)s'
 
 def get_locale():
+    if 'language' in session:
+        return session['language']
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 def init_logger() -> None:
