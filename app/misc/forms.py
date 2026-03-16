@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask import flash
-from misc.typing_hacks import _l
+from misc.helpers.typing_hacks import _l
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, URL
 

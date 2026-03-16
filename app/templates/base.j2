@@ -17,8 +17,10 @@
 <body class="h-full bg-slate-200">
     <div class="flex flex-row h-full w-full">
       {% include "navbar.j2" %}
+      <div class="flex-1">
       {% block content %}
       {% endblock content %}
+      </div>
     </div>
 </body>
 </html>

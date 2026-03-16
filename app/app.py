@@ -84,7 +84,7 @@ def init_app() -> None:
     login_manager.session_protection = "basic"
     login_manager.login_view = 'AuthController.login'
     login_manager.login_message = _l('Log in to access this page')
-    login_manager.user_loader(lambda uid: User.get_or_none(uid))
+    login_manager.user_loader(lambda uid: User.get_or_none(int(uid)))
     login_manager.init_app(app)
     babel.init_app(app, locale_selector=get_locale)
 

@@ -1,5 +1,5 @@
 from flask import Blueprint, current_app, render_template, session, redirect, url_for
-from misc.auth_helpers import admin_only
+from misc.helpers.auth_helpers import admin_only
 
 IndexController = Blueprint('IndexController', __name__)
 

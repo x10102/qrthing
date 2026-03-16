@@ -21,6 +21,7 @@ class User(BaseModel):
     
     # Flask-Login stuff
     is_anonymous = False
+    is_authenticated = True
 
 class DynamicCode(BaseModel):
     id = UUIDField(primary_key=True)
